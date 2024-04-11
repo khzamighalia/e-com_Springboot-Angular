@@ -1,0 +1,110 @@
+.add-product-button {
+    background-color: #007bff; /* Blue color for add product button */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .update-button {
+    background-color: #ffa500; /* Orange color for update button */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px; /* Add some spacing between buttons */
+  }
+  
+  .delete-button {
+    background-color: #dc3545; /* Red color for delete button */
+    color: #fff; /* White text color */
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px; /* Add some spacing between buttons */
+  }
+  
+  .update-button:hover, .delete-button:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f2f2f2; /* Light gray background for table header */
+  }
+  
+  tr:hover {
+    background-color: #f5f5f5; /* Light gray background on hover */
+  }
+  
+  .add-product-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .add-product-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .add-product-form label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .add-product-form input[type="text"],
+  .add-product-form input[type="number"],
+  .add-product-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .add-product-form textarea {
+    height: 100px;
+  }
+  
+  .add-product-form button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-product-form button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  .error-alert {
+    background-color: #f8d7da; /* Light red background color */
+    color: #721c24; /* Dark red text color */
+    padding: 10px 15px; /* Padding around the text */
+    border: 1px solid #f5c6cb; /* Red border */
+    border-radius: 4px; /* Rounded corners */
+    margin-bottom: 20px; /* Bottom margin */
+  }
+  

@@ -1,0 +1,81 @@
+<!-- cart.component.html -->
+<br>
+<div class="container-fluid py-5">
+    <div class="container py-5">
+      <tr *ngIf="!cartitems || cartitems.length === 0">
+        <td colspan="6">No items added in the cart</td>
+      </tr>
+        <div class="table-responsive">
+          <table *ngIf="cartitems && cartitems.length > 0" class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Products</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cartitem of cartitems">
+                    <td><img [src]="cartitem.product?.imageUrl" class="img-fluid w-50 rounded-top" alt=""></td>
+                    <td><p class="mb-0 mt-4">{{ cartitem.product?.title }}</p></td>
+                    <td><p class="mb-0 mt-4">{{ cartitem.product?.price }}</p></td>
+                    <td>
+                      <div class="input-group quantity mt-4" style="width: 100px;">
+                        <div class="input-group-btn">
+                          <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                            <i class="fa fa-minus"></i>
+                          </button>
+                        </div>
+                        <input type="text" class="form-control form-control-sm text-center border-0" value="{{ cartitem.quantity }}">
+                        <div class="input-group-btn">
+                          <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                            <i class="fa fa-plus"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                    <td><p class="mb-0 mt-4"> {{ cartitem.total }}
+                    </p></td>
+                    <td>
+                      <button class="btn btn-md rounded-circle bg-light border mt-4" (click)="removeFromCart(cartitem.id)">
+                        <i class="fa fa-times text-danger"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div>
+       
+        <div *ngIf="cartitems && cartitems.length > 0" class="row g-4 justify-content-end">
+            <div class="col-8"></div>
+            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                <div class="bg-light rounded">
+                    <div class="p-4">
+                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                        <div class="d-flex justify-content-between mb-4">
+                            <h5 class="mb-0 me-4">Subtotal:</h5>
+                            <p class="mb-0">$96.00</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-0 me-4">Shipping</h5>
+                            <div class="">
+                                <p class="mb-0">50 dh</p>
+                            </div>
+                        </div>
+                        <p class="mb-0 text-end">Shipping to Morocco.</p>
+                    </div>
+                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                        <p class="mb-0 pe-4">50 dh</p>
+                    </div>
+                    <a routerLink="/checkout"><button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button"> Proceed Checkout </button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart Page End -->

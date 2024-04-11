@@ -1,0 +1,53 @@
+  <div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <div class="tab-class text-center">
+                <div class="col-lg-4 text-start">
+                    <br><br>
+                    <h1>All Products</h1>
+                    <br>
+            </div>
+            <div id="alertAddtoCartBox" class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Item added to cart
+              </div>
+              <div id="errorAddtoCartBox" class="alert alert-error">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                Item already exists in the cart
+              </div>
+              <div id="loginAddtoCartBox" class="alert alert-error">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                You have to log in to add an item to the cart
+            </div>
+                    <div class="row">
+                        <div class="col-md-4 col-lg-4 col-xl-3" *ngFor="let product of products" >
+                            <ng-container >
+                                <div class="rounded position-relative fruite-item">
+                                    <div class="fruite-img">
+                                        <img [src]="product.imageUrl" class="img-fluid w-100 rounded-top" alt="">
+                                    </div>
+                                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{ product.category }}</div>
+                                    <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                        <h4>{{ product.title }}</h4>
+                                        <p>{{ product.description }}</p>
+                                        <form (submit)="addToCart($event, product)">
+                                            <!-- Hidden input field for product ID -->
+                                            <input type="hidden" name="productId" [value]="product.id">
+                                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                                <p class="text-dark fs-5 fw-bold mb-0">{{ product.price }} dh</p>
+                                                <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                                    <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </ng-container>
+                            
+
+                                    <br>
+                                                       </div>
+                    </div>
+                    
+        </div>      
+    </div>
+</div>

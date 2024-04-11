@@ -1,0 +1,48 @@
+  <br><br><br><br><br><br>
+  <div class="row  justify-content-center">
+            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                <div class="bg-light rounded">
+                    <div class="p-4">
+                        <h1 class="display-6 mb-4"> <span class="fw-normal">Welcome!</span></h1>
+                              <form *ngIf="isLoginMode else registerForm" (ngSubmit)="login()">
+                                <h5 class="mb-0 me-4">Email</h5>
+                                <input type="text" name="email" placeholder="Email" class="form-control border-0 w-200 py-2 px-2 rounded-pill" [(ngModel)]="email"><br>
+                                <h5 class="mb-0 me-4">Password</h5>
+                                <input type="password" name="password" placeholder="Password" class="form-control border-0 w-100 py-2 px-3 rounded-pill" [(ngModel)]="password"><br>
+                                <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase ms-4" type="submit">LOGIN</button>
+                                <div class="py-4 mb-4 border-top border-bottom ">
+                                    <p class="mb-0 text-center"> If you don't have an account <a (click)="toggleMode()">Click here</a></p>
+                                </div>
+                                </form>
+                            <ng-template #registerForm>
+                                <form (submit)="register()">
+                                  <h5 class="mb-0 me-4">Firstname</h5><br>
+                                  <input type="text" name="firstname" placeholder="Firstname" class="form-control border-0 w-200 py-2 px-2 rounded-pill" [(ngModel)]="firstname"><br>
+                                  
+                                  <h5 class="mb-0 me-4">Lastname</h5><br>
+                                  <input type="text" name="lastname" placeholder="Lastname" class="form-control border-0 w-200 py-2 px-2 rounded-pill" [(ngModel)]="lastname"><br>
+                                  
+                                  <h5 class="mb-0 me-4">Email</h5><br>
+                                  <input type="text" name="email" placeholder="Email" class="form-control border-0 w-200 py-2 px-2 rounded-pill" [(ngModel)]="email"><br>
+                                  
+                                  <h5 class="mb-0 me-4">Password</h5><br>
+                                  <input type="password" name="password" placeholder="Password" class="form-control border-0 w-100 py-2 px-3 rounded-pill" [(ngModel)]="password"><br>
+                                  
+                                  <h5 class="mb-0 me-4">Repeat your Password</h5><br>
+                                  <input type="password" name="repeatPassword" placeholder="Password" class="form-control border-0 w-100 py-2 px-3 rounded-pill" [(ngModel)]="repeatPassword"><br>
+                                  
+                                  <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase ms-4" type="submit">Create an account</button>
+                                  <div class="py-4 mb-4 border-top border-bottom ">
+                                    <p class="mb-0 text-center"> If you already have an account <a (click)="toggleMode()">Click here</a></p>
+                                </div>
+                                </form>
+                              </ng-template>
+                    
+                   
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+        

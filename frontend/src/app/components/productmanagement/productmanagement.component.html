@@ -1,0 +1,117 @@
+<br><br><br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <br>
+      <button class="add-product-button" (click)="showAddProductForm()">
+        <i class="fa fa-plus"></i> Add product
+      </button>
+    
+    </div>
+   
+    <div *ngIf="showAddForm" class="add-product-form" >
+      <h2>Add Product</h2>
+      <form (ngSubmit)="onSubmit('add')">
+          <label for="title">Name:</label>
+          <input type="text" id="title" name="title" [(ngModel)]="newProduct.title" required>
+          <br><br>
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" [(ngModel)]="newProduct.price" required>
+          <br><br>
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" [(ngModel)]="newProduct.description" required></textarea>
+          <br><br>
+          <label for="category">Category:</label>
+          <input type="text" id="category" name="category" [(ngModel)]="newProduct.category" required>
+          <br><br>
+          <label for="stock">Stock:</label>
+          <input type="number" id="stock" name="stock" [(ngModel)]="newProduct.stock" required>
+          <br><br>
+          <label for="image">Image:</label>
+          <input type="file" id="image" name="image" (change)="onFileSelected($event)" accept="image/*" required>
+          <br><br>
+          <div class="error-alert" *ngIf="showErrorAlert">
+            An error occurred. Please try again later.
+          </div>
+          <button type="submit">Submit</button>
+      </form>
+  </div>
+  <div *ngIf="showEditForm" class="add-product-form">
+    <h2>Edit Product</h2>
+    <form (ngSubmit)="onSubmit('edit')">
+      <label for="title">Name:</label>
+      <input type="text" id="title" name="title" [(ngModel)]="product.title" required>
+      <br><br>
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" [(ngModel)]="product.price" required>
+      <br><br>
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="product.description" required></textarea>
+      <br><br>
+      <label for="category">Category:</label>
+      <input type="text" id="category" name="category" [(ngModel)]="product.category" required>
+      <br><br>
+      <label for="stock">Stock:</label>
+      <input type="number" id="stock" name="stock" [(ngModel)]="product.stock" required>
+      <br><br>
+      <label for="image">Image:</label>
+      <input type="file" id="image" name="image" (change)="onFileSelected($event)" accept="image/*">
+      <br><br>
+      <div class="error-alert" *ngIf="showErrorAlert">
+        An error occurred. Please try again later.
+      </div>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+  
+  <br>
+  <div class="success-alert" *ngIf="showAddSuccessAlert">
+   Product added successfully!
+  </div>
+  <div class="success-alert" *ngIf="showEditSuccessAlert">
+    Product updated successfully!
+   </div>
+   <div class="success-alert" *ngIf="showDeleteSuccessAlert">
+    Product deleted successfully!
+   </div>
+   
+  
+
+    <div class="col-lg-12">
+      <br>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td><img [src]="product.imageUrl" class="img-fluid w-100 rounded-top" alt=""></td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.stock }}</td>
+            <td colspan="2">
+              <button class="update-button" (click)="showUpdateForm(product.id)">
+                <i class="fa fa-edit"></i>  
+              </button>
+                         
+              <button class="delete-button" (click)="deleteProduct(product.id)">
+                <i class="fa fa-trash"></i>  
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br><br>
+    </div>
+  </div>
+</div> 
