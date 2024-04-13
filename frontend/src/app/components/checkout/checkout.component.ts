@@ -63,7 +63,6 @@ getProductByCartItem(productId: number): void {
             if (cartItem) {
                 cartItem.product = data;
             }
-            this.router.navigate(['/confirmationcheckout']);
 
         },
         error => {
@@ -72,17 +71,6 @@ getProductByCartItem(productId: number): void {
     );
 }
 
-// addToOrder(userId: number,fullname: string, address: string, phone: string): void {
-//     this.orderService.addToOrderFromCart(userId,fullname, address, phone).subscribe(
-//       (order: Order) => {
-//         // Handle successful addition to order
-//         console.log('Order added:', order);
-//       },
-//       error => {
-//         console.error('Error adding order:', error);
-//       }
-//     );
-//   }
   
 addToOrder(): void {
     const userIdString = localStorage.getItem('userId');
@@ -95,6 +83,9 @@ addToOrder(): void {
         (order: Order) => {
             // Handle successful addition to order
             console.log('Order added:', order);
+            this.router.navigate(['/confirmation']);
+
+
         },
         error => {
             console.log('Order added:', fullname);

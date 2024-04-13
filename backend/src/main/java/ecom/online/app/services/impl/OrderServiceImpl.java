@@ -27,20 +27,6 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findByUserId(userId);
     }
 
-    // @Override
-    // public Order addToOrder(Long userId, Long productId, int quantity, double total,String fullname, String address,String phone) {
-    //     Order orderItem = new Order();
-    //     orderItem.setUserId(userId);
-    //     orderItem.setProductId(productId);
-    //     orderItem.setQuantity(quantity);
-    //     orderItem.setTotal(total);
-    //     orderItem.setFullname(fullname);
-    //     orderItem.setAddress(address);
-    //     orderItem.setPhone(phone);
-
-    //     return orderRepository.save(orderItem);
-    // }
-
     @Override
     public Long addToOrderFromCart(Long userId, String fullname, String address, String phone) {
         // Retrieve cart items for the user
@@ -65,27 +51,7 @@ public class OrderServiceImpl implements OrderService {
         return userId;
     }
 
-    // public Long addToOrderFromCart(Long userId,String fullname,String address,String phone) {
-    //     // Retrieve cart items for the user
-    //     List<Cart> cartItems = cartService.getCartByUserId(userId);
-    //     for (Cart cartItem : cartItems) {
-    //         Order orderItem = new Order();
-    //         orderItem.setUserId(userId);
-    //         orderItem.setProductId(cartItem.getProductId());
-    //         orderItem.setQuantity(cartItem.getQuantity());
-    //         orderItem.setTotal(cartItem.getTotal());
-    //         orderItem.setFullname(fullname);
-    //         orderItem.setAddress(address);
-    //         orderItem.setPhone(phone);
-    //         // Optionally, you can copy other properties as needed
-    //         orderRepository.save(orderItem);
-    //     }
-
-    //     // Clear the user's cart after adding items to the order
-    //     cartService.removeFromCartByUserId(userId);
-
-    //     return userId;
-    // }
+    
     @Override
     public Order updateOrderItemQuantity(Long orderItemId, int newQuantity) {
         Optional<Order> optionalOrder = orderRepository.findById(orderItemId);
@@ -103,6 +69,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void removeFromOrder(Long orderItemId) {
         orderRepository.deleteById(orderItemId);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
     }
 
     

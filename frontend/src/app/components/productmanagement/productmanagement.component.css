@@ -108,3 +108,7 @@
     margin-bottom: 20px; /* Bottom margin */
   }
   
+  .custom-button {
+    background-color: #ffa500;
+    color: #fff; 
+}

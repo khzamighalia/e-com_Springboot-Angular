@@ -18,4 +18,5 @@ export const routes: Routes = [
     {'path': 'checkout', component:CheckoutComponent},
     {'path': 'notfound', component:NotfoundComponent},
     {'path': 'ProductsDash', component:ProductmanagementComponent, canActivate: [AuthGuardService]},
-    {'path': 'confirmationcheckout', component:ConfirmationorderComponent}];
+    {'path': 'confirmation', component:ConfirmationorderComponent}
+];

@@ -1,11 +1,18 @@
 <br><br><br><br><br><br>
 <div class="container">
   <div class="row">
-    <div class="col-lg-3">
-      <br>
-      <button class="add-product-button" (click)="showAddProductForm()">
-        <i class="fa fa-plus"></i> Add product
-      </button>
+    <div class="col-lg-12">    
+    <button *ngIf="productslist" class="add-product-button custom-button" (click)="showAllOrders()">
+        <i class="fas fa-list"></i> View orders
+    </button>
+    <button *ngIf="orderslist" class="add-product-button" (click)="showProducts()">
+      <i class="fas fa-arrow-left"></i> Back to products
+    </button>
+    <br>
+    <button  *ngIf="productslist" class="add-product-button" (click)="showAddProductForm()">
+      <i class="fa fa-plus"></i> Add product
+    </button>
+    
     
     </div>
    
@@ -79,7 +86,7 @@
 
     <div class="col-lg-12">
       <br>
-      <table>
+      <table  *ngIf="productslist" class="productsList">
         <thead>
           <tr>
             <th>Image</th>
@@ -93,7 +100,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let product of products">
-            <td><img [src]="product.imageUrl" class="img-fluid w-100 rounded-top" alt=""></td>
+            <td><img [src]="product.imageUrl" class="img-fluid w-25 rounded-top" alt=""></td>
             <td>{{ product.title }}</td>
             <td>{{ product.price }}</td>
             <td>{{ product.description }}</td>
@@ -111,6 +118,29 @@
           </tr>
         </tbody>
       </table>
+      <table *ngIf="orderslist" class="ordersList">
+        <thead>
+          <tr>
+            <th>Fullname</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.fullname }}</td>
+            <td>{{ order.address }}</td>
+            <td>{{ order.phone }}</td>
+            <td>{{ order.product?.title }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.total }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
       <br><br>
     </div>
   </div>

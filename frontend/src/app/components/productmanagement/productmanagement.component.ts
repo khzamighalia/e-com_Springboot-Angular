@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../Services/product.service';
 import { TokenService } from '../../Services/token-service.service';
 import { Product } from '../../shared/product';
+import { Order } from '../../shared/order';
+import { OrderService } from './../../Services/order.service';
 
 @Component({
   selector: 'app-productmanagement',
@@ -11,6 +13,7 @@ import { Product } from '../../shared/product';
 })
 export class ProductmanagementComponent implements OnInit {
   products: Product[] = [];
+  orders: Order[] = [];
   product: Product = {
     id: 0,
     title: '',
@@ -31,6 +34,8 @@ export class ProductmanagementComponent implements OnInit {
   };
   showAddForm: boolean = false;
   showEditForm: boolean = false;
+  productslist: boolean = true;
+  orderslist: boolean = false;
   selectedProductId: number | null = null; // Property to hold the selected product ID
 
   token: string | null = '';
@@ -44,13 +49,17 @@ export class ProductmanagementComponent implements OnInit {
   constructor(
     private tokenService: TokenService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
     this.token = this.tokenService.getToken();
     this.loadProducts();
+    // this.loadOrders();
   }
+
+  //Products
 
   showAddProductForm(): void {
     this.showAddForm = true;
@@ -125,21 +134,8 @@ export class ProductmanagementComponent implements OnInit {
 
       }
     );
-    // this.showEditForm = true; // Show the update form
   }
 
-  // editProduct(productId: number): void {
-  //   this.productService.getProduct(productId).subscribe(
-  //     (data: Product) => {
-  //       this.newProduct = data;
-  //       this.showEditForm = true;
-  //     },
-  //     error => {
-  //       this.errorMessage = 'Error fetching product: ' + error.message;
-  //       this.showErrorAlert = true;
-  //     }
-  //   );
-  // }
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe(
@@ -156,7 +152,6 @@ export class ProductmanagementComponent implements OnInit {
   updateProduct(product: Product): void {
     this.productService.updateProduct(product.id, product).subscribe(
       updatedProduct => {
-        // Optionally, update the table or show a success message
         console.log('Product updated:', updatedProduct);
         this.showEditForm = false;
         this.showEditSuccessAlert = true;
@@ -173,8 +168,7 @@ export class ProductmanagementComponent implements OnInit {
   deleteProduct(id: number): void {
     this.productService.deleteProduct(id).subscribe(
       () => {
-        // Optionally, update the table or show a success message
-        this.loadProducts(); // Refresh the product list after deletion
+        this.loadProducts(); 
         this.showDeleteSuccessAlert = true;
         this.showEditSuccessAlert = false;
           this.showAddSuccessAlert = false;
@@ -198,4 +192,100 @@ export class ProductmanagementComponent implements OnInit {
     };
     this.selectedImage = null;
   }
+
+  showProducts(): void {
+    
+    this.orderslist = false;
+    this.productslist = true;
+    this.loadOrders();
+
+   
+  }
+
+  // //Orders
+  // loadOrders(): void {
+  //   this.orderService.getAllOrders().subscribe(
+  //     (orders: Order[]) => {
+  //       this.orders = orders;
+  //     },
+  //     error => {
+  //       this.errorMessage = 'Error loading products: ' + error.message;
+  //       this.showErrorAlert = true;
+  //     }
+  //   );
+  // }
+
+  showAllOrders(): void {
+    this.showAddForm = false;
+    this.showEditForm = false;
+    this.orderslist = true;
+    this.productslist = false;
+    this.loadOrders();
+
+   
+  }
+  // loadOrders(): void {
+  //   this.orderService.getAllOrders().subscribe(
+  //     (orders: Order[]) => {
+  //       this.orders = orders;
+  //       // Fetch product details for each order
+  //       this.orders.forEach(order => {
+  //         this.productService.getProduct(order.productId);
+  //       });
+  //     },
+  //     error => {
+  //       this.errorMessage = 'Error loading orders: ' + error.message;
+  //       this.showErrorAlert = true;
+  //     }
+  //   );
+  // }
+
+  // getProductByProductId(productId: number): void {
+  //   this.productService.getProduct(productId).subscribe(
+  //     (product: Product) => {
+  //       const order = this.orders.find(order => order.productId === productId);
+  //       if (order) {
+  //         order.product = product;
+  //       }
+  //     },
+  //     error => {
+  //       console.error('Error fetching product:', error);
+  //     }
+  //   );
+  // }
+  loadOrders(): void {
+    this.orderService.getAllOrders().subscribe(
+      (orders: Order[]) => {
+        this.orders = orders;
+        // Fetch product details for each order
+        this.loadProductsForOrders();
+      },
+      error => {
+        this.errorMessage = 'Error loading orders: ' + error.message;
+        this.showErrorAlert = true;
+      }
+    );
+  }
+  
+  loadProductsForOrders(): void {
+    // Fetch product details for each order
+    this.orders.forEach(order => {
+      this.getProductByProductId(order.productId);
+    });
+  }
+  
+  getProductByProductId(productId: number): void {
+    this.productService.getProduct(productId).subscribe(
+      (product: Product) => {
+        const order = this.orders.find(order => order.productId === productId);
+        if (order) {
+          order.product = product;
+        }
+      },
+      error => {
+        console.error('Error fetching product:', error);
+      }
+    );
+  }
+  
 }

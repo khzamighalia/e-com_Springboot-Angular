@@ -17,5 +17,7 @@ public interface OrderService {
     Order updateOrderItemQuantity(Long orderItemId, int newQuantity);
 
     void removeFromOrder(Long orderItemId);
+
+    List<Order> getAllOrders();
     
 }
