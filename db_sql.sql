@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 11 avr. 2024 à 22:58
+-- Généré le : Dim 14 avr. 2024 à 01:51
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -35,14 +35,7 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `total` double NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `cart`
---
-
-INSERT INTO `cart` (`id`, `product_id`, `user_id`, `total`, `quantity`) VALUES
-(26, 3, 1, 180, 1);
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -60,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(27);
+(29);
 
 -- --------------------------------------------------------
 
@@ -79,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `orders`
@@ -87,10 +80,10 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 INSERT INTO `orders` (`id`, `product_id`, `user_id`, `total`, `quantity`, `fullname`, `address`, `phone`) VALUES
 (10, 3, 2, 180, 1, 'ghalia khzami', 'rue oued elmakhazine vn safi', '0818818'),
+(18, 39, 1, 145, 1, 'test', 'test', '000099'),
 (11, 40, 2, 134, 1, 'ghalia khzami', 'rue oued elmakhazine vn safi', '0818818'),
 (12, 39, 2, 145, 1, 'ghalia khzami', 'rue oued elmakhazine vn safi', '0818818'),
-(13, 39, 2, 145, 1, 'ghaliaa', 'rueee', '9999'),
-(14, 3, 2, 180, 1, 'lolo', 'ruee', '9999');
+(19, 39, 1, 145, 1, 'ghalia khzami', '8 rue les fleurs', '067888888');
 
 -- --------------------------------------------------------
 
@@ -148,7 +141,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `email`, `email_verification_status`, `email_verification_token`, `encrypted_password`, `first_name`, `last_name`, `user_id`, `role`) VALUES
 (1, 'elghalia@gmail.com', NULL, NULL, '$2a$10$JAlLoOP.7psUPbmE2qSc8OI3JslvmSupMP3YK9yDXpOWv490g/.Yq', 'ghalia', 'khzami', 'O0j4Ve2I61c5nj8znx9Y2Go4kKX8Hkx0', 'admin'),
-(2, 'elghaliatest@gmail.com', NULL, NULL, '$2a$10$JFo9qM8LZneAsLiOV3LymuxDpdmf8UoZXmxmDxVvfvCItXtdF8waW', 'ghalia', 'khzami', 'PbDWCAIXiOXAubf8HDHhTZaq4xCz6Ggf', 'user');
+(2, 'elghaliatest@gmail.com', NULL, NULL, '$2a$10$JFo9qM8LZneAsLiOV3LymuxDpdmf8UoZXmxmDxVvfvCItXtdF8waW', 'ghalia', 'khzami', 'PbDWCAIXiOXAubf8HDHhTZaq4xCz6Ggf', 'user'),
+(27, 'test2024@gmail.com', NULL, NULL, '$2a$10$gED61E73pjYWtr8dyNhyju62BDw1dWrLKO1fXPDkIisnYUydtFGiK', 'test', 'test', 'Y7pocCZ0VOJ7LN7S6xzbNLm42XobcXnd', 'user'),
+(28, 'test1204@gmail.com', NULL, NULL, '$2a$10$YiGhwp.BT9fX9wP20If3i.M6vTD8BUR8hmDf/m9beMDuwI3QkHBXe', 'test', 'test', 'vi57KUtLEZ1wssutWITD2MaDQ4WznSO6', 'user');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
